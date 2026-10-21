@@ -1,0 +1,543 @@
+[gd_scene format=3 uid="uid://c8b8oeimd7omo"]
+
+[ext_resource type="Script" uid="uid://b3n6nv4vap0nn" path="res://scenes/levels/level_1.gd" id="1_1pwbc"]
+[ext_resource type="PackedScene" uid="uid://cbd5i0uhtdkwv" path="res://objects/obstacle/obstacle_teeth.tscn" id="2_j08sa"]
+[ext_resource type="AudioStream" uid="uid://dn0ivrygc2and" path="res://assets/audio/explosion.wav" id="2_m00rq"]
+[ext_resource type="AudioStream" uid="uid://deo3pkr3rivxb" path="res://assets/audio/jump.wav" id="3_brv20"]
+[ext_resource type="PackedScene" uid="uid://b326t3jw5di5n" path="res://objects/obstacle/obstacle_wheel.tscn" id="3_x4si1"]
+[ext_resource type="PackedScene" uid="uid://6kunksgi8qhe" path="res://objects/obstacle/obstacle_rock.tscn" id="4_fh0io"]
+[ext_resource type="PackedScene" uid="uid://cynhk643ilw2k" path="res://objects/obstacle/obstacle_k.tscn" id="5_68ib6"]
+[ext_resource type="PackedScene" uid="uid://dt1t33lbjjdjr" path="res://objects/obstacle/obstable_bridge.tscn" id="6_76cw8"]
+[ext_resource type="Texture2D" uid="uid://dndlkyyjoffcs" path="res://assets/image/asteroid1.png" id="9_7d7pp"]
+[ext_resource type="Texture2D" uid="uid://bqhajy8akebnj" path="res://assets/image/asteroid2.png" id="10_e5nfq"]
+[ext_resource type="Script" uid="uid://d18nfb765b5my" path="res://scenes/levels/animation_player.gd" id="11_lha2r"]
+[ext_resource type="Script" uid="uid://cobbiwegn3ta8" path="res://scenes/levels/timer.gd" id="12_6owa4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pwbc"]
+size = Vector2(16, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j08sa"]
+size = Vector2(1280, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brv20"]
+size = Vector2(8, 880)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7d7pp"]
+size = Vector2(8, 916)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5nfq"]
+size = Vector2(8, 880)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4si1"]
+size = Vector2(8, 802)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh0io"]
+size = Vector2(124, 7.9999695)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68ib6"]
+size = Vector2(165, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76cw8"]
+size = Vector2(151, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m00rq"]
+size = Vector2(138, 8)
+
+[sub_resource type="Curve2D" id="Curve2D_7d7pp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 278, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_7d7pp"]
+length = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e5nfq"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lha2r"]
+_data = {
+&"RESET": SubResource("Animation_7d7pp"),
+&"move": SubResource("Animation_e5nfq")
+}
+
+[sub_resource type="Animation" id="Animation_lha2r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_6owa4"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n5pya"]
+_data = {
+&"RESET": SubResource("Animation_lha2r"),
+&"move": SubResource("Animation_6owa4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lha2r"]
+size = Vector2(236, 64)
+
+[node name="Level1" type="Node2D" unique_id=1922323828]
+script = ExtResource("1_1pwbc")
+
+[node name="ExplosionPlayer" type="AudioStreamPlayer" parent="." unique_id=479940875]
+unique_name_in_owner = true
+stream = ExtResource("2_m00rq")
+volume_db = -4.0
+
+[node name="VictoryPlayer" type="AudioStreamPlayer" parent="." unique_id=652126658]
+unique_name_in_owner = true
+stream = ExtResource("3_brv20")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=809709378]
+offset_right = 1280.0
+offset_bottom = 1024.0
+color = Color(0.9814418, 0.8888836, 0.954222, 1)
+metadata/_edit_lock_ = true
+
+[node name="Walls2" type="StaticBody2D" parent="." unique_id=397267746]
+collision_layer = 4
+collision_mask = 3
+
+[node name="WallLeft" type="ColorRect" parent="Walls2" unique_id=1029779602]
+offset_right = 16.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallRight" type="ColorRect" parent="Walls2" unique_id=1570476738]
+offset_left = 1264.0
+offset_right = 1280.0
+offset_bottom = 1023.99994
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallTop" type="ColorRect" parent="Walls2" unique_id=991198802]
+offset_right = 1280.0
+offset_bottom = 16.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallBottom" type="ColorRect" parent="Walls2" unique_id=1961932501]
+offset_top = 1008.0
+offset_right = 1280.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Wall1" type="ColorRect" parent="Walls2" unique_id=1546210586]
+offset_left = 255.0
+offset_top = 144.0
+offset_right = 263.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Wall2" type="ColorRect" parent="Walls2" unique_id=700848661]
+offset_left = 510.0
+offset_right = 518.0
+offset_bottom = 916.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Wall3" type="ColorRect" parent="Walls2" unique_id=570869639]
+offset_left = 765.0
+offset_top = 144.0
+offset_right = 773.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Wall4" type="ColorRect" parent="Walls2" unique_id=1957339791]
+offset_left = 1020.0
+offset_right = 1028.0
+offset_bottom = 802.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Left" type="CollisionShape2D" parent="Walls2" unique_id=16950325]
+position = Vector2(8, 512)
+shape = SubResource("RectangleShape2D_1pwbc")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="Walls2" unique_id=640994900]
+position = Vector2(1272, 512)
+shape = SubResource("RectangleShape2D_1pwbc")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Top" type="CollisionShape2D" parent="Walls2" unique_id=1984967015]
+position = Vector2(640, 8)
+shape = SubResource("RectangleShape2D_j08sa")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls2" unique_id=891528563]
+position = Vector2(640, 1016)
+shape = SubResource("RectangleShape2D_j08sa")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="WallColl1" type="CollisionShape2D" parent="Walls2" unique_id=542514519]
+position = Vector2(259, 584)
+shape = SubResource("RectangleShape2D_brv20")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="WallColl2" type="CollisionShape2D" parent="Walls2" unique_id=78965032]
+position = Vector2(514, 458)
+shape = SubResource("RectangleShape2D_7d7pp")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="WallColl3" type="CollisionShape2D" parent="Walls2" unique_id=146266365]
+position = Vector2(769, 584)
+shape = SubResource("RectangleShape2D_e5nfq")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="WallColl4" type="CollisionShape2D" parent="Walls2" unique_id=949514181]
+position = Vector2(1024, 401)
+shape = SubResource("RectangleShape2D_x4si1")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Obstacles" type="Node2D" parent="." unique_id=873463301]
+
+[node name="ObstacleTeeth" parent="Obstacles" unique_id=1501660661 instance=ExtResource("2_j08sa")]
+position = Vector2(15, 196)
+
+[node name="ObstacleWheel" parent="Obstacles" unique_id=557005777 instance=ExtResource("3_x4si1")]
+position = Vector2(350, 148)
+rotation_speed = 2.0
+
+[node name="ObstacleWheel2" parent="Obstacles" unique_id=1808355773 instance=ExtResource("3_x4si1")]
+position = Vector2(455, 277)
+rotation_speed = 2.0
+clockwise = false
+
+[node name="ObstacleWheel3" parent="Obstacles" unique_id=1755339336 instance=ExtResource("3_x4si1")]
+position = Vector2(318, 409)
+rotation_speed = 3.0
+
+[node name="ObstacleWheel4" parent="Obstacles" unique_id=1502267992 instance=ExtResource("3_x4si1")]
+position = Vector2(444, 526)
+clockwise = false
+
+[node name="ObstacleWheel5" parent="Obstacles" unique_id=1191828269 instance=ExtResource("3_x4si1")]
+position = Vector2(617, 394)
+scale = Vector2(0.8, 0.8)
+clockwise = false
+
+[node name="ObstacleWheel10" parent="Obstacles" unique_id=968677255 instance=ExtResource("3_x4si1")]
+position = Vector2(650, 551)
+clockwise = false
+
+[node name="ObstacleWheel6" parent="Obstacles" unique_id=1701760746 instance=ExtResource("3_x4si1")]
+position = Vector2(1150.1946, 388.41983)
+clockwise = false
+
+[node name="ObstacleWheel7" parent="Obstacles" unique_id=1897844199 instance=ExtResource("3_x4si1")]
+position = Vector2(1242, 313)
+scale = Vector2(0.5, 0.5)
+
+[node name="ObstacleWheel8" parent="Obstacles" unique_id=888309814 instance=ExtResource("3_x4si1")]
+position = Vector2(1183, 234)
+scale = Vector2(0.5, 0.5)
+clockwise = false
+
+[node name="ObstacleWheel9" parent="Obstacles" unique_id=1994388809 instance=ExtResource("3_x4si1")]
+position = Vector2(1258, 166)
+scale = Vector2(0.5, 0.5)
+
+[node name="ObstacleFence1" type="StaticBody2D" parent="Obstacles" unique_id=1203303051]
+position = Vector2(263, 611)
+rotation = 0.10471976
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/ObstacleFence1" unique_id=1296635745]
+offset_right = 124.0
+offset_bottom = 8.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/ObstacleFence1" unique_id=167659069]
+position = Vector2(62, 4)
+shape = SubResource("RectangleShape2D_fh0io")
+
+[node name="ObstacleFence2" type="StaticBody2D" parent="Obstacles" unique_id=1094924053]
+position = Vector2(351, 688)
+rotation = 0.15882497
+
+[node name="ColorRect3" type="ColorRect" parent="Obstacles/ObstacleFence2" unique_id=1463697153]
+offset_right = 165.0
+offset_bottom = 8.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/ObstacleFence2" unique_id=307812965]
+position = Vector2(82.5, 4)
+shape = SubResource("RectangleShape2D_68ib6")
+metadata/_edit_lock_ = true
+
+[node name="ObstacleFence3" type="StaticBody2D" parent="Obstacles" unique_id=1270119766]
+position = Vector2(258.00003, 819.00006)
+rotation = -0.3577925
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/ObstacleFence3" unique_id=2082749194]
+offset_right = 151.0
+offset_bottom = 8.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/ObstacleFence3" unique_id=1421175685]
+position = Vector2(75.5, 4)
+shape = SubResource("RectangleShape2D_76cw8")
+metadata/_edit_lock_ = true
+
+[node name="ObstacleFence4" type="StaticBody2D" parent="Obstacles" unique_id=1784614354]
+position = Vector2(379, 841.99994)
+rotation = -0.13962635
+scale = Vector2(0.9999999, 0.9999999)
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/ObstacleFence4" unique_id=269244014]
+offset_right = 138.0
+offset_bottom = 8.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/ObstacleFence4" unique_id=1129764595]
+position = Vector2(69, 4)
+shape = SubResource("RectangleShape2D_m00rq")
+metadata/_edit_lock_ = true
+
+[node name="ObstacleFence5" type="StaticBody2D" parent="Obstacles" unique_id=1807457063]
+position = Vector2(415.99997, 907)
+rotation = 1.8325957
+scale = Vector2(0.9999999, 0.9999999)
+
+[node name="ColorRect" type="ColorRect" parent="Obstacles/ObstacleFence5" unique_id=599443265]
+offset_right = 138.0
+offset_bottom = 8.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/ObstacleFence5" unique_id=181284197]
+position = Vector2(69, 4)
+shape = SubResource("RectangleShape2D_m00rq")
+metadata/_edit_lock_ = true
+
+[node name="ObstacleRock1" parent="Obstacles" unique_id=1260939608 instance=ExtResource("4_fh0io")]
+position = Vector2(518, 158)
+
+[node name="ObstacleRock2" parent="Obstacles" unique_id=944130312 instance=ExtResource("4_fh0io")]
+position = Vector2(766, 355)
+rotation = -3.1415925
+
+[node name="ObstacleRock3" parent="Obstacles" unique_id=308731989 instance=ExtResource("4_fh0io")]
+position = Vector2(517, 567)
+
+[node name="ObstacleRock4" parent="Obstacles" unique_id=521946295 instance=ExtResource("4_fh0io")]
+position = Vector2(765, 764)
+rotation = -3.1415925
+
+[node name="ObstacleRock5" parent="Obstacles" unique_id=1683861794 instance=ExtResource("4_fh0io")]
+position = Vector2(1018, 6)
+rotation = 1.5707964
+
+[node name="ObstacleRock6" parent="Obstacles" unique_id=796662731 instance=ExtResource("4_fh0io")]
+position = Vector2(476, 1046)
+rotation = 4.712389
+
+[node name="ObstacleRock7" parent="Obstacles" unique_id=759788441 instance=ExtResource("4_fh0io")]
+position = Vector2(580, 1074)
+rotation = 4.712389
+scale = Vector2(1, -1)
+
+[node name="ObstacleK1" parent="Obstacles" unique_id=1483842477 instance=ExtResource("5_68ib6")]
+position = Vector2(900, 233)
+
+[node name="ObstacleK2" parent="Obstacles" unique_id=2075346649 instance=ExtResource("5_68ib6")]
+position = Vector2(899, 477)
+clockwise = false
+
+[node name="ObstableBridge1" parent="Obstacles" unique_id=461016623 instance=ExtResource("6_76cw8")]
+position = Vector2(773, 601)
+
+[node name="ObstableBridge2" parent="Obstacles" unique_id=993126252 instance=ExtResource("6_76cw8")]
+position = Vector2(1028, 601)
+
+[node name="Asteroid1" type="Path2D" parent="Obstacles" unique_id=256239834]
+position = Vector2(865, 810)
+curve = SubResource("Curve2D_7d7pp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacles/Asteroid1" unique_id=2133084449]
+position = Vector2(-10, 0)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/Asteroid1/PathFollow2D" unique_id=266273546]
+libraries/ = SubResource("AnimationLibrary_lha2r")
+autoplay = &"move"
+
+[node name="Body" type="StaticBody2D" parent="Obstacles/Asteroid1/PathFollow2D" unique_id=1679342516]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Obstacles/Asteroid1/PathFollow2D/Body" unique_id=1946959489]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_7d7pp")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Asteroid1/PathFollow2D/Body" unique_id=1968882642]
+polygon = PackedVector2Array(11, 2, 31, 6, 36, 11, 38, 23, 36, 33, 32, 37, 10, 38, 5, 34, 2, 19, 5, 9, 11, 2)
+metadata/_edit_lock_ = true
+
+[node name="Asteroid2" type="Path2D" parent="Obstacles" unique_id=1333380271]
+position = Vector2(858, 873)
+curve = SubResource("Curve2D_7d7pp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacles/Asteroid2" unique_id=574518653]
+position = Vector2(-10, 0)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/Asteroid2/PathFollow2D" unique_id=1834970359]
+libraries/ = SubResource("AnimationLibrary_n5pya")
+script = ExtResource("11_lha2r")
+delay = 0.2
+
+[node name="Body" type="StaticBody2D" parent="Obstacles/Asteroid2/PathFollow2D" unique_id=1718003232]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Obstacles/Asteroid2/PathFollow2D/Body" unique_id=487543769]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("10_e5nfq")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Asteroid2/PathFollow2D/Body" unique_id=1244309508]
+polygon = PackedVector2Array(11, 2, 31, 6, 36, 11, 38, 23, 36, 33, 32, 37, 10, 38, 5, 34, 2, 19, 5, 9, 11, 2)
+metadata/_edit_lock_ = true
+
+[node name="Asteroid3" type="Path2D" parent="Obstacles" unique_id=290176920]
+position = Vector2(894, 928)
+curve = SubResource("Curve2D_7d7pp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Obstacles/Asteroid3" unique_id=2063935335]
+position = Vector2(-10, 0)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Obstacles/Asteroid3/PathFollow2D" unique_id=1709768185]
+libraries/ = SubResource("AnimationLibrary_lha2r")
+script = ExtResource("11_lha2r")
+delay = 0.5
+
+[node name="Body" type="StaticBody2D" parent="Obstacles/Asteroid3/PathFollow2D" unique_id=1412226605]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Obstacles/Asteroid3/PathFollow2D/Body" unique_id=789905740]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_7d7pp")
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/Asteroid3/PathFollow2D/Body" unique_id=341302346]
+polygon = PackedVector2Array(11, 2, 31, 6, 36, 11, 38, 23, 36, 33, 32, 37, 10, 38, 5, 34, 2, 19, 5, 9, 11, 2)
+metadata/_edit_lock_ = true
+
+[node name="EndBlock" type="StaticBody2D" parent="Obstacles" unique_id=2131746085]
+
+[node name="Polygon2D" type="Polygon2D" parent="Obstacles/EndBlock" unique_id=129433046]
+position = Vector2(1057.075, 80)
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+polygon = PackedVector2Array(-10, 0, 10.925, 315, 99.925, 315, 152.925, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Obstacles/EndBlock" unique_id=842747843]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(1047, 80, 1210, 80, 1157, 396, 1068, 396)
+
+[node name="EndArea" type="Area2D" parent="." unique_id=293368542]
+position = Vector2(1028, 16)
+collision_layer = 0
+collision_mask = 3
+
+[node name="Background" type="ColorRect" parent="EndArea" unique_id=1306975230]
+offset_right = 236.0
+offset_bottom = 64.0
+color = Color(0.963363, 0.7826088, 0.9114081, 1)
+
+[node name="Delimiter" type="ColorRect" parent="EndArea" unique_id=786417661]
+offset_top = 63.0
+offset_right = 236.0
+offset_bottom = 64.0
+color = Color(0.31888494, 0.023956504, 0.27151182, 1)
+
+[node name="Label" type="Label" parent="EndArea" unique_id=1726838330]
+offset_right = 236.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+text = "FINISH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea" unique_id=967290620]
+position = Vector2(118, 32)
+shape = SubResource("RectangleShape2D_lha2r")
+debug_color = Color(0, 1, 0, 0.41960785)
+
+[node name="Start1" type="Marker2D" parent="." unique_id=692587504]
+unique_name_in_owner = true
+position = Vector2(65, 960)
+
+[node name="Start2" type="Marker2D" parent="." unique_id=1999445058]
+unique_name_in_owner = true
+position = Vector2(206, 960)
+
+[node name="Time" type="Label" parent="." unique_id=45195443]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 178.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0.22352941, 0.011764706, 0.1882353, 0.50980395)
+text = "00:00.000"
+script = ExtResource("12_6owa4")
+
+[connection signal="body_entered" from="EndArea" to="." method="_on_end_area_body_entered"]

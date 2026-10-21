@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://6kunksgi8qhe"]
+
+[ext_resource type="Texture2D" uid="uid://2yr56gblrkvl" path="res://assets/image/obstacle_3.png" id="1_mf8uw"]
+
+[node name="ObstacleRock" type="StaticBody2D" unique_id=1260939608]
+collision_layer = 8
+collision_mask = 3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=876239230]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_left = -33.0
+offset_top = -18.0
+offset_right = 107.0
+offset_bottom = 212.0
+texture = ExtResource("1_mf8uw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=11926512]
+polygon = PackedVector2Array(0, -0.5, 34, -11.5, 94, 115, 0, 210)

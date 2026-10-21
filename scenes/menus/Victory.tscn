@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://bfc75wy6vwhyj"]
+
+[ext_resource type="Script" uid="uid://w5mnsmyxgl4y" path="res://scenes/menus/victory.gd" id="1_5g1ge"]
+[ext_resource type="Texture2D" uid="uid://kdy4htlcoli2" path="res://assets/image/victory_background.png" id="2_ijcip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vv6u"]
+size = Vector2(16, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g1ge"]
+size = Vector2(1280, 16)
+
+[node name="Victory" type="Node2D" unique_id=1805883087]
+script = ExtResource("1_5g1ge")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=929044751]
+offset_right = 1280.0
+offset_bottom = 1024.0
+texture = ExtResource("2_ijcip")
+
+[node name="Victory" type="Label" parent="." unique_id=1806814791]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = 125.0
+offset_right = 1264.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+theme_override_font_sizes/font_size = 120
+text = "VICTORY_TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=844987231]
+collision_layer = 4
+collision_mask = 3
+
+[node name="WallLeft" type="ColorRect" parent="Walls" unique_id=886771041]
+offset_right = 16.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallRight" type="ColorRect" parent="Walls" unique_id=647538964]
+offset_left = 1264.0
+offset_right = 1280.0
+offset_bottom = 1023.99994
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallTop" type="ColorRect" parent="Walls" unique_id=1006258042]
+offset_right = 1280.0
+offset_bottom = 16.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="WallBottom" type="ColorRect" parent="Walls" unique_id=1366127548]
+offset_top = 1008.0
+offset_right = 1280.0
+offset_bottom = 1024.0
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="Left" type="CollisionShape2D" parent="Walls" unique_id=1982781413]
+position = Vector2(8, 512)
+shape = SubResource("RectangleShape2D_4vv6u")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Right" type="CollisionShape2D" parent="Walls" unique_id=1702801571]
+position = Vector2(1272, 512)
+shape = SubResource("RectangleShape2D_4vv6u")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Top" type="CollisionShape2D" parent="Walls" unique_id=1049749508]
+position = Vector2(640, 8)
+shape = SubResource("RectangleShape2D_5g1ge")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls" unique_id=937405823]
+position = Vector2(640, 1016)
+shape = SubResource("RectangleShape2D_5g1ge")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Start1" type="Marker2D" parent="." unique_id=2095070936]
+unique_name_in_owner = true
+position = Vector2(420.3183, 652.76587)
+
+[node name="Start2" type="Marker2D" parent="." unique_id=463120405]
+unique_name_in_owner = true
+position = Vector2(844, 656)
+
+[node name="Time" type="Label" parent="." unique_id=1885392677]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 16.0
+offset_top = 312.0564
+offset_right = 1264.0
+offset_bottom = 357.0564
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+theme_override_font_sizes/font_size = 60
+text = "00.00:000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuMargin" type="MarginContainer" parent="." unique_id=285021173]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 15.5
+offset_top = 855.0
+offset_right = 1264.0
+offset_bottom = 1006.0
+grow_horizontal = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Button" type="Button" parent="MenuMargin" unique_id=270442638]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "VICTORY_MENU_BUTTON"
+
+[connection signal="pressed" from="MenuMargin/Button" to="." method="_on_button_pressed"]

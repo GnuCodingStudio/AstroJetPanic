@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dbh4xmvkqc7uv"]
+
+[ext_resource type="Texture2D" uid="uid://bf83e66rweyvv" path="res://assets/image/burst-1.png" id="1_46olp"]
+[ext_resource type="Texture2D" uid="uid://4nnvjmew81d3" path="res://assets/image/ship-1.png" id="1_nsqdp"]
+[ext_resource type="Script" uid="uid://d3mooq7i2spho" path="res://objects/actors/ship/Ship.gd" id="1_yqbni"]
+
+[node name="Ship" type="RigidBody2D" unique_id=1073333486]
+collision_layer = 0
+collision_mask = 12
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 2
+linear_damp = 0.1
+script = ExtResource("1_yqbni")
+
+[node name="BurstSprite" type="Sprite2D" parent="." unique_id=570855350]
+unique_name_in_owner = true
+modulate = Color(1, 0.51812285, 0.115856595, 1)
+position = Vector2(-6.7762636e-21, 10.000001)
+scale = Vector2(0.1, 0.099999994)
+texture = ExtResource("1_46olp")
+
+[node name="ShipSprite" type="Sprite2D" parent="." unique_id=843336383]
+unique_name_in_owner = true
+position = Vector2(-3.8146973e-06, -4.999998)
+scale = Vector2(0.15490803, 0.15490802)
+texture = ExtResource("1_nsqdp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1366027194]
+polygon = PackedVector2Array(0, -16, 8, 5.9, -8, 5.9)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

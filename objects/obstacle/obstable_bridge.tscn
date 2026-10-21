@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dt1t33lbjjdjr"]
+
+[node name="ObstableBridge" type="StaticBody2D" unique_id=461016623]
+
+[node name="CollisionPolygonLeft" type="CollisionPolygon2D" parent="." unique_id=1972596356]
+polygon = PackedVector2Array(82, 44, 82, 154, -1, 202, -1, -4)
+
+[node name="CollisionPolygonRight" type="CollisionPolygon2D" parent="." unique_id=1772461949]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-165, 44, -165, 154, -249, 202, -248, -4)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=782525190]
+offset_left = 168.99998
+offset_top = 146.99998
+offset_right = 264.0
+offset_bottom = 154.99998
+rotation = 0.5201081
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=1216677813]
+offset_left = 165.0
+offset_top = 44.0
+offset_right = 260.0
+offset_bottom = 52.0
+rotation = -0.5235988
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="." unique_id=575507822]
+offset_left = 173.0
+offset_top = 44.0
+offset_right = 283.22595
+offset_bottom = 52.0
+rotation = 1.5707964
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=1062197870]
+offset_left = 78.27239
+offset_top = 50.999985
+offset_right = 173.2724
+offset_bottom = 58.999985
+rotation = 3.6651914
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="." unique_id=1797542311]
+offset_left = 82.2724
+offset_top = 154.0
+offset_right = 177.2724
+offset_bottom = 162.0
+rotation = 2.6179938
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="." unique_id=422337206]
+offset_left = 82.2724
+offset_top = 44.0
+offset_right = 192.49835
+offset_bottom = 52.0
+rotation = 1.5707964
+color = Color(0.22352941, 0.011764706, 0.1882353, 1)

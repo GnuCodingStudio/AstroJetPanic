@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://dpeyhi4f1jd78"]
+
+[ext_resource type="Theme" uid="uid://cwahu64hfgl1x" path="res://resources/theme/MenuTheme.tres" id="1_tjl38"]
+[ext_resource type="Script" uid="uid://yefsxlq6n6ht" path="res://scenes/menus/main/MainMenu.gd" id="2_jmfhq"]
+[ext_resource type="PackedScene" uid="uid://wdqk4jv113lg" path="res://components/uicontrols/UIContols.tscn" id="3_m362a"]
+[ext_resource type="PackedScene" uid="uid://bpk0axlikarbm" path="res://scenes/menus/ConfirmDialog.tscn" id="3_pus6v"]
+[ext_resource type="Texture2D" uid="uid://dc46wesk5711c" path="res://assets/image/background.png" id="4_5nfro"]
+[ext_resource type="Script" uid="uid://cruqxcxvexbvk" path="res://scenes/menus/main/Menu.gd" id="5_5nfro"]
+[ext_resource type="PackedScene" uid="uid://b1jimh7w0a3n7" path="res://scenes/console/GameConsole.tscn" id="5_ljn2o"]
+[ext_resource type="Script" uid="uid://b1k6wh0gsgwgr" path="res://scenes/console/command/Command.gd" id="7_2time"]
+
+[sub_resource type="GDScript" id="GDScript_b4ev4"]
+script/source = "extends Label
+
+
+func appear(time: float) -> void:
+	show()
+	await get_tree().create_timer(time).timeout
+	hide()
+"
+
+[node name="MainMenu" type="Control" unique_id=583820102]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_tjl38")
+script = ExtResource("2_jmfhq")
+metadata/_edit_use_anchors_ = true
+
+[node name="UiContols" parent="." unique_id=107034102 instance=ExtResource("3_m362a")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1194957687]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_5nfro")
+
+[node name="GlobalMargin" type="MarginContainer" parent="." unique_id=1017539545]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 366.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TemplateFromGCS" type="Label" parent="GlobalMargin" unique_id=1208377989]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "A Gnu Coding Studio's template"
+script = SubResource("GDScript_b4ev4")
+
+[node name="MenuMargin" type="MarginContainer" parent="." unique_id=1146699528]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 628.0
+offset_bottom = 1022.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Menu" type="VBoxContainer" parent="MenuMargin" unique_id=1561565575]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+script = ExtResource("5_5nfro")
+
+[node name="VersusButton" type="Button" parent="MenuMargin/Menu" unique_id=1727285860]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../QuitButton")
+focus_neighbor_bottom = NodePath("../TimeAttackButton")
+focus_next = NodePath("../TimeAttackButton")
+focus_previous = NodePath("../QuitButton")
+text = "MAIN_VERSUS_BUTTON"
+
+[node name="TimeAttackButton" type="Button" parent="MenuMargin/Menu" unique_id=351792463]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../VersusButton")
+focus_neighbor_bottom = NodePath("../CreditsButton")
+focus_next = NodePath("../CreditsButton")
+focus_previous = NodePath("../VersusButton")
+text = "MAIN_TIMEATTACK_BUTTON"
+
+[node name="CreditsButton" type="Button" parent="MenuMargin/Menu" unique_id=1544696747]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../TimeAttackButton")
+focus_neighbor_bottom = NodePath("../QuitButton")
+focus_next = NodePath("../QuitButton")
+focus_previous = NodePath("../TimeAttackButton")
+text = "MAIN_CREDITS_BUTTON"
+
+[node name="QuitButton" type="Button" parent="MenuMargin/Menu" unique_id=1738661974]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+focus_neighbor_top = NodePath("../CreditsButton")
+focus_neighbor_bottom = NodePath("../VersusButton")
+focus_next = NodePath("../VersusButton")
+focus_previous = NodePath("../CreditsButton")
+text = "MAIN_QUIT_BUTTON"
+
+[node name="QuitDialog" parent="." unique_id=1023943957 instance=ExtResource("3_pus6v")]
+unique_name_in_owner = true
+layout_mode = 1
+text = "QUIT_CONFIRM_TEXT"
+confirmButtonText = "QUIT_CONFIRM_BUTTON"
+cancelButtonText = "QUIT_CONFIRM_CANCEL"
+
+[node name="GameConsole" parent="." unique_id=1746281369 instance=ExtResource("5_ljn2o")]
+visible = false
+auto_help = true
+
+[node name="easter-egg" type="Node" parent="GameConsole" unique_id=64116819 node_paths=PackedStringArray("target")]
+script = ExtResource("7_2time")
+target = NodePath("../../GlobalMargin/TemplateFromGCS")
+function = "appear"
+help = "Show info about the template used to create this game."
+parameters = Array[String](["time:float:0.6"])
+
+[connection signal="pressed" from="MenuMargin/Menu/VersusButton" to="." method="_on_versus_pressed"]
+[connection signal="pressed" from="MenuMargin/Menu/TimeAttackButton" to="." method="_on_time_attack_pressed"]
+[connection signal="pressed" from="MenuMargin/Menu/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuMargin/Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="on_confirm" from="QuitDialog" to="." method="_on_quit_dialog_confirmed"]

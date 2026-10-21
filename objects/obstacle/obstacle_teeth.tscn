@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cbd5i0uhtdkwv"]
+
+[ext_resource type="Texture2D" uid="uid://bb4toh3vpc6m8" path="res://assets/image/obstacle_1.png" id="1_3nioe"]
+
+[node name="ObstacleTeeth" type="StaticBody2D" unique_id=809202582]
+collision_layer = 8
+collision_mask = 3
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=179267884]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_right = 242.0
+offset_bottom = 584.0
+texture = ExtResource("1_3nioe")
+
+[node name="Left" type="CollisionPolygon2D" parent="." unique_id=1198480083]
+polygon = PackedVector2Array(0, 0, 89, 79, 0, 159, 70, 221, 0, 284, 57, 334, 0, 385, 49, 428, 0, 472, 36, 504, 0, 536, 24, 557, 0, 579, -2, 579, -2, 0)
+
+[node name="Right" type="CollisionPolygon2D" parent="." unique_id=1688534330]
+position = Vector2(240, 1)
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(0, 0, 89, 79, 0, 159, 70, 221, 15.747559, 269.82724, 0, 284, 57, 334, 0, 385, 49, 428, 0, 472, 36, 504, 0, 536, 24, 557, 0, 579, -2, 579, -2, 0)

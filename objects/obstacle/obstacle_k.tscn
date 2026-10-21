@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cynhk643ilw2k"]
+
+[ext_resource type="Script" uid="uid://cw7pxdc0whv3m" path="res://objects/obstacle/obstacle_k.gd" id="1_68w68"]
+[ext_resource type="Texture2D" uid="uid://dpm2gen7dis0o" path="res://assets/image/obstacle_4.png" id="1_p1pts"]
+
+[node name="ObstacleK" type="StaticBody2D" unique_id=1483842477]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_68w68")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1020887762]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_left = -122.0
+offset_top = -85.0
+offset_right = 74.0
+offset_bottom = 78.0
+texture = ExtResource("1_p1pts")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1338384767]
+polygon = PackedVector2Array(16, 1, -99, -79, 73, -58, 54, 67, -72, 58)

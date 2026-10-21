@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b326t3jw5di5n"]
+
+[ext_resource type="Script" uid="uid://blyjdkf1xybnf" path="res://objects/obstacle/obstacle_wheel.gd" id="1_7n5lf"]
+[ext_resource type="Texture2D" uid="uid://ctd2hvw16fpu" path="res://assets/image/obstacle_2.png" id="1_hw3un"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hw3un"]
+radius = 48.0
+
+[node name="ObstacleWheel" type="StaticBody2D" unique_id=557005777]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_7n5lf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2062625165]
+modulate = Color(0.22352941, 0.011764706, 0.1882353, 1)
+offset_left = -48.5
+offset_top = -48.5
+offset_right = 48.5
+offset_bottom = 48.5
+texture = ExtResource("1_hw3un")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1020948594]
+shape = SubResource("CircleShape2D_hw3un")
